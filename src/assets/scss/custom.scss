@@ -94,6 +94,10 @@ html {
     font-weight: 600 !important;
 }
 
+.text-upper {
+  text-transform: uppercase;
+}
+
 // width
 .w100 {
     width: 100%;
@@ -150,7 +154,7 @@ html {
 }
 .categories {
   .active{
-      background-color: #283891;
+      background-color: #283891 !important;
       color: white !important;
       a {
         color: white !important;
@@ -161,14 +165,21 @@ html {
     }
 }
 .categories li{
+  list-style-type: none;
+}
+
+.categories a{
   text-align: end;
   list-style-type: none;
-  padding: 9px 9px 9px 6px;
   font-family: "Montserrat" !important;
   font-size: 14px;
   font-weight: 600;
   display: flex;
   justify-content: flex-end;
+  padding: 9px 18px;
+  svg {
+    margin-left: 10px;
+  }
 }
 
 .category-header:hover{
@@ -187,4 +198,36 @@ html {
 
 .categories li:hover{
   background-color: #E5E5E5;
+}
+
+.about-section {
+  .about-header {
+    color: #283891;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .about-body{
+    font-size: 1.2rem;
+  }
+
+  .about-ava {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    img {
+        width: 100%;
+        height: auto;
+    }
+    button{
+      width: 50%;
+    }
+  }
+}
+
+.fixed-scroll {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: inline-block;
 }
