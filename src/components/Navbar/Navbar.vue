@@ -171,7 +171,7 @@ export default {
     },
     scrollListener() {
       resizeThrottler(this.handleScroll);
-    }
+    },
   },
   mounted() {
     document.addEventListener('scroll', this.scrollListener);

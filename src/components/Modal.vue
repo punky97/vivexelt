@@ -6,7 +6,7 @@
       :class="[
         { 'show d-block': show },
         { 'd-none': !show },
-        { 'modal-mini': type === 'mini' }
+        { 'modal-mini': type === 'mini' },
       ]"
       v-show="show"
       tabindex="-1"

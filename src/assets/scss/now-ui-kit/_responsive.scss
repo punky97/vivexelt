@@ -13,6 +13,9 @@
         .nav-open &{
             .navbar-collapse{
                 @include transform-translate-x(0px);
+                a {
+                    color: white !important;
+                }
             }
 
             .wrapper{

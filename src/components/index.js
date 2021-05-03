@@ -22,6 +22,7 @@ import Parallax from './Parallax.vue';
 import Slider from './Slider.vue';
 
 import Pagination from './Pagination.vue';
+import ContentLoading from './ContentLoading';
 
 export {
   Alert,
@@ -44,5 +45,6 @@ export {
   Modal,
   Parallax,
   Slider,
-  Button
+  Button,
+  ContentLoading
 };

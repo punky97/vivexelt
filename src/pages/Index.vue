@@ -14,8 +14,14 @@
             Council funded Digital Learning Innovation Pilot With the support of
             the Vietnam’s National Foreign Languages Project (NFLP)
           </h2>
-          <n-button class="text-bold" type="primary" round
-            >Get Started
+          <n-button
+            class="text-bold"
+            type="primary"
+            round
+            style="font-size: 1rem"
+            @click="goToTut()"
+          >
+            Get Started
           </n-button>
         </div>
       </div>
@@ -23,7 +29,7 @@
     <div class="section section-about-us">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-4 home-carousel">
+          <div class="col-md-4 home-carousel s-pb24">
             <el-carousel height="500px">
               <el-carousel-item>
                 <img class="d-block" src="img/bg1.jpg" alt="First slide" />
@@ -142,6 +148,11 @@ export default {
   computed: {
     logoSvg() {
       return require('../assets/images/logo.svg')
+    }
+  },
+  methods: {
+    goToTut() {
+      this.$router.push({ name: 'tutorials' })
     }
   }
 };

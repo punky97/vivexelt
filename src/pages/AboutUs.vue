@@ -123,7 +123,7 @@
             <div class="about-section s-pb48" id="meet-vivexelt-team">
               <div class="about-header s-pb24">Meet ViVEXELT Team</div>
               <div class="about-body row">
-                <div class="about-ava col-3">
+                <div class="about-ava col-lg-3">
                   <img
                     class="d-block s-pb12"
                     src="img/avatar.jpg"
@@ -137,7 +137,7 @@
                   </span>
                   <n-button type="primary" round simple>Detail</n-button>
                 </div>
-                <div class="about-ava col-3">
+                <div class="about-ava col-lg-3">
                   <img
                     class="d-block s-pb12"
                     src="img/eva.jpg"
@@ -151,7 +151,7 @@
                   </span>
                   <n-button type="primary" round simple>Detail</n-button>
                 </div>
-                <div class="about-ava col-3">
+                <div class="about-ava col-lg-3">
                   <img
                     class="d-block s-pb12"
                     src="img/julie.jpg"
@@ -165,7 +165,7 @@
                   </span>
                   <n-button type="primary" round simple>Detail</n-button>
                 </div>
-                <div class="about-ava col-3">
+                <div class="about-ava col-lg-3">
                   <img
                     class="d-block s-pb12"
                     src="img/ryan.jpg"
@@ -221,10 +221,15 @@
               bezier-easing-value=".5,0,.35,1"
               activeClass="active"
               :scrollOnStart="false"
+              v-on:itemchanged="onItemChanged"
             >
               <ul class="categories">
                 <li>
-                  <a href="#what-is-vivexelt" class="scrollactive-item">
+                  <a
+                    href="#what-is-vivexelt"
+                    class="scrollactive-item"
+                    :on-click="onItemChanged"
+                  >
                     What is ViVEXELT?
                     <i class="fas fa-caret-left"></i>
                   </a>
@@ -303,6 +308,9 @@ export default {
       } else {
         div.style.top = `0px`
       }
+    },
+    onItemChanged: function () {
+
     }
   }
 

@@ -1,11 +1,13 @@
-import { Parallax } from '../components';
 import {
   Button,
   Checkbox,
   Radio,
   FormGroupInput,
   Slider,
-  Switch
+  Switch,
+  Parallax,
+  ContentLoading,
+  Modal
 } from '@/components';
 /**
  * You can register global components here
@@ -20,6 +22,8 @@ const globalComponents = {
     Vue.component(FormGroupInput.name, FormGroupInput);
     Vue.component(Slider.name, Slider);
     Vue.component(Switch.name, Switch);
+    Vue.component(ContentLoading.name, ContentLoading);
+    Vue.component(Modal.name, Modal);
   }
 };
 

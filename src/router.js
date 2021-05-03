@@ -8,7 +8,7 @@ import MainNavbar from './layout/MainNavbar.vue';
 import MainFooter from './layout/MainFooter.vue';
 import Component from './pages/Component.vue';
 import AboutUs from './pages/AboutUs.vue';
-
+import Tutorial from './pages/Tutorial.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -29,6 +29,15 @@ export default new Router({
       components: { default: AboutUs, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/tutorials',
+      name: 'tutorials',
+      components: { default: Tutorial, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 0 },
         footer: { backgroundColor: 'black' }
       }
     },

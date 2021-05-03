@@ -6,9 +6,10 @@
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
     class="navbar"
+    ref="navbar"
   >
     <template>
-      <router-link v-popover:popover1 class="navbar-brand" to="/">
+      <router-link class="navbar-brand" to="/">
         <img style="width: 100px" src="img/real-logo.png" alt="Third slide" />
       </router-link>
       <!-- <el-popover
@@ -24,40 +25,25 @@
       </el-popover> -->
     </template>
     <template slot="navbar-menu">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
-          target="_blank"
-        >
-          <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-          <p>Download</p>
-        </a>
+      <li class="nav-item search-tut">
+        <form v-on:submit.prevent="onSubmit()">
+          <fg-input class="" placeholder="Search" v-model="searchValue">
+          </fg-input>
+        </form>
       </li>
-      <drop-down
-        tag="li"
-        title="Components"
-        icon="now-ui-icons design_app"
-        class="nav-item"
-      >
-        <nav-link to="/">
-          <i class="now-ui-icons business_chart-pie-36"></i> All components
-        </nav-link>
-        <a
-          href="https://demos.creative-tim.com/vue-now-ui-kit/documentation"
-          target="_blank"
-          class="dropdown-item"
-        >
-          <i class="now-ui-icons design_bullet-list-67"></i> Documentation
-        </a>
-      </drop-down>
+      <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('aboutus')">
+        About Us
+      </a>
+      <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('tutorials')">
+        Tutorials
+      </a>
       <drop-down
         tag="li"
         title="Examples"
         icon="now-ui-icons design_image"
         class="nav-item"
       >
-        <nav-link to="/landing">
+        <nav-link to="/landing" @click="toggle()">
           <i class="now-ui-icons education_paper"></i> Landing
         </nav-link>
         <nav-link to="/login">
@@ -70,18 +56,40 @@
           <i class="now-ui-icons users_single-02"></i> Component
         </nav-link>
       </drop-down>
-      <li class="nav-item">
-        <a class="nav-link" style="cursor: pointer">
+      <li class="nav-item search-modal">
+        <a class="nav-link" style="cursor: pointer" @click="showSearch = true">
           <i class="fas fa-search"></i>
         </a>
       </li>
     </template>
+    <modal
+      :show.sync="showSearch"
+      headerClasses="justify-content-center"
+      type="notice"
+    >
+      <h4 slot="header" class="title title-up">Modal title</h4>
+      <div class="form__group field">
+        <form v-on:submit.prevent="onSubmit()">
+          <input
+            type="input"
+            class="form__field"
+            placeholder="Enter something to search"
+            name="name"
+            id="name"
+            v-model="searchValue"
+            required
+          />
+          <label for="name" class="form__label">Search</label>
+        </form>
+      </div>
+    </modal>
   </navbar>
 </template>
 
 <script>
 import { DropDown, Navbar, NavLink } from '@/components';
 import { Popover } from 'element-ui';
+import { mapActions } from 'vuex'
 export default {
   name: 'main-navbar',
   props: {
@@ -93,6 +101,38 @@ export default {
     Navbar,
     NavLink,
     [Popover.name]: Popover
+  },
+  data() {
+    return {
+      showSearch: false,
+      searchValue: '',
+    }
+  },
+  methods: {
+    ...mapActions('search', {
+      searchTut: 'searchTut',
+    }),
+    onSubmit: function () {
+      this.searchTut(this.searchValue)
+      if (this.$route.name === 'tutorials') {
+        this.$router.replace({ query: { search: this.searchValue } })
+      } else {
+        this.$router.push({ name: 'tutorials', query: { search: this.searchValue } })
+
+      }
+      this.showSearch = false
+      this.searchValue = ''
+      this.toggle()
+    },
+    toggle() {
+      this.$refs['navbar'].toggle()
+    },
+    goTo(route) {
+      this.toggle()
+      if (this.$route.name !== route) {
+        this.$router.push({ name: route })
+      }
+    }
   }
 };
 </script>

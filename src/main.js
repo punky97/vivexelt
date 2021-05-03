@@ -20,18 +20,19 @@ import App from './App.vue';
 import router from './router';
 import NowUiKit from './plugins/now-ui-kit';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faVuejs } from '@fortawesome/free-brands-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { dom } from '@fortawesome/fontawesome-svg-core'
 import VueScrollactive from 'vue-scrollactive';
+import Vuex from "vuex";
+import store from "./store";
 
 
+Vue.use(Vuex);
 
-library.add(faVuejs)
-library.add(faSpinner)
+library.add(fab)
 library.add(fas)
 library.add(far)
 dom.watch()
@@ -44,5 +45,6 @@ Vue.use(VueScrollactive);
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app');
