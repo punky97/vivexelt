@@ -296,12 +296,12 @@ export default {
   },
   methods: {
     handleScroll: function (e) {
-      let height = 700
+      let height = 400
       let div = document.getElementsByClassName('fixed-scroll')[0]
-      if (window.scrollY > height + 50) {
+      if (window.scrollY > height) {
         var top = window.scrollY - height
         top = top < 0 ? 0 : top;
-        var maximum = 1800;
+        var maximum = 2500;
         maximum = maximum < 0 ? 0 : maximum;
         top = top > maximum ? maximum : top;
         div.style.top = `${top}px`
