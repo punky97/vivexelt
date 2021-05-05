@@ -3,17 +3,18 @@ import Router from 'vue-router';
 import Index from './pages/Index.vue';
 import Landing from './pages/Landing.vue';
 import Login from './pages/Login.vue';
-import Profile from './pages/Profile.vue';
+import DemoProfile from './pages/DemoProfile.vue';
 import MainNavbar from './layout/MainNavbar.vue';
 import MainFooter from './layout/MainFooter.vue';
 import Component from './pages/Component.vue';
 import AboutUs from './pages/AboutUs.vue';
 import Tutorial from './pages/Tutorial.vue';
+import Profile from './pages/Profile.vue';
 Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: 'active',
-  mode:'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -39,6 +40,15 @@ export default new Router({
       components: { default: Tutorial, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 0 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/profile/:user_name',
+      name: 'profile',
+      components: { default: Profile, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
       }
     },
@@ -69,9 +79,9 @@ export default new Router({
       }
     },
     {
-      path: '/profile',
-      name: 'profile',
-      components: { default: Profile, header: MainNavbar, footer: MainFooter },
+      path: '/demo-profile',
+      name: 'demoProfile',
+      components: { default: DemoProfile, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }

@@ -123,62 +123,25 @@
             <div class="about-section s-pb48" id="meet-vivexelt-team">
               <div class="about-header s-pb24">Meet ViVEXELT Team</div>
               <div class="about-body row">
-                <div class="about-ava col-lg-3">
+                <div
+                  class="about-ava col-lg-4"
+                  v-for="(user, index) in profile"
+                  :key="index"
+                >
                   <img
                     class="d-block s-pb12"
-                    src="img/avatar.jpg"
-                    alt="zoe Gazeley-Eke"
+                    :src="user.image"
+                    :alt="user.name"
                   />
                   <span class="text-bold text-upper s-pb12">
-                    zoe Gazeley-Eke</span
-                  >
-                  <span class="text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </span>
-                  <n-button type="primary" round simple>Detail</n-button>
-                </div>
-                <div class="about-ava col-lg-3">
-                  <img
-                    class="d-block s-pb12"
-                    src="img/eva.jpg"
-                    alt="zoe Gazeley-Eke"
-                  />
-                  <span class="text-bold text-upper s-pb12">
-                    nguyen thi thom thom
+                    {{ user.name }}
                   </span>
                   <span class="text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {{ user.short_description }}
                   </span>
-                  <n-button type="primary" round simple>Detail</n-button>
-                </div>
-                <div class="about-ava col-lg-3">
-                  <img
-                    class="d-block s-pb12"
-                    src="img/julie.jpg"
-                    alt="zoe Gazeley-Eke"
-                  />
-                  <span class="text-bold text-upper s-pb12">
-                    bui thi ngoc thuy
-                  </span>
-                  <span class="text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </span>
-                  <n-button type="primary" round simple>Detail</n-button>
-                </div>
-                <div class="about-ava col-lg-3">
-                  <img
-                    class="d-block s-pb12"
-                    src="img/ryan.jpg"
-                    alt="zoe Gazeley-Eke"
-                  />
-                  <span class="text-bold text-upper s-pb12">
-                    zoe Gazeley-Eke
-                  </span>
-
-                  <span class="text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </span>
-                  <n-button type="primary" round simple>Detail</n-button>
+                  <router-link :to="`/profile/${index}`">
+                    <n-button type="primary" round simple>Detail</n-button>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -221,15 +184,10 @@
               bezier-easing-value=".5,0,.35,1"
               activeClass="active"
               :scrollOnStart="false"
-              v-on:itemchanged="onItemChanged"
             >
               <ul class="categories">
                 <li>
-                  <a
-                    href="#what-is-vivexelt"
-                    class="scrollactive-item"
-                    :on-click="onItemChanged"
-                  >
+                  <a href="#what-is-vivexelt" class="scrollactive-item">
                     What is ViVEXELT?
                     <i class="fas fa-caret-left"></i>
                   </a>
@@ -271,6 +229,7 @@
 </template>
 <script>
 import { Button, FormGroupInput } from '@/components';
+import { Profile } from './constant/const'
 export default {
   name: 'about-us',
   bodyClass: 'landing-page',
@@ -284,11 +243,14 @@ export default {
         firstName: '',
         email: '',
         message: ''
-      }
+      },
+      profile: {}
     };
   },
   mounted() {
     document.addEventListener('scroll', this.handleScroll);
+    this.profile = Profile
+    console.log()
   },
   destroyed: function () {
     document.removeEventListener('scroll', this.handleScroll);
@@ -301,7 +263,7 @@ export default {
       if (window.scrollY > height) {
         var top = window.scrollY - height
         top = top < 0 ? 0 : top;
-        var maximum = 2500;
+        var maximum = this.getOffset(document.getElementById('when-will-the-courses-take-place')).top - 300;
         maximum = maximum < 0 ? 0 : maximum;
         top = top > maximum ? maximum : top;
         div.style.top = `${top}px`
@@ -309,9 +271,17 @@ export default {
         div.style.top = `0px`
       }
     },
-    onItemChanged: function () {
+    getOffset: function (el) {
+      var _x = 0;
+      var _y = 0;
+      while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+      }
+      return { top: _y, left: _x };
+    },
 
-    }
   }
 
 };

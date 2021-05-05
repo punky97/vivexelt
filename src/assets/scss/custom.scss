@@ -220,9 +220,7 @@ html {
         width: 100%;
         height: auto;
     }
-    button{
-      width: 50%;
-    }
+    
   }
 }
 @media (min-width: 992px) {
@@ -417,4 +415,13 @@ $gray: #9b9b9b;
   a {
     cursor: pointer;
   }
+}
+
+.profile-section {
+  .title{
+    font-size: 2rem;
+  }
+.profile-description {
+  font-size: 1.5rem;
+}
 }

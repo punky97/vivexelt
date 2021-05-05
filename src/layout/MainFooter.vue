@@ -8,19 +8,17 @@
       <nav>
         <ul>
           <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
+            <router-link class="navbar-brand" to="/"> ViVEXELT </router-link>
           </li>
           <li>
-            <a href="https:///presentation.creative-tim.com">
+            <router-link class="navbar-brand" to="/about">
               About Us
-            </a>
+            </router-link>
           </li>
           <li>
-            <a href="https:///blog.creative-tim.com">
-              Blog
-            </a>
+            <router-link class="navbar-brand" to="/tutorials">
+              Tutorials
+            </router-link>
           </li>
         </ul>
       </nav>

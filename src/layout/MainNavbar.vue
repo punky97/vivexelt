@@ -49,7 +49,7 @@
         <nav-link to="/login">
           <i class="now-ui-icons users_circle-08"></i> Login
         </nav-link>
-        <nav-link to="/profile">
+        <nav-link to="/demo-profile">
           <i class="now-ui-icons users_single-02"></i> Profile
         </nav-link>
         <nav-link to="/component">
