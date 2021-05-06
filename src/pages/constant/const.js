@@ -170,3 +170,14 @@ export const Profile = {
         Trinh Viet Dung is  the web and educational video designer for project ViVEXELT.`,
     }
 }
+
+export const buildQueryString = params => {
+    const query = [];
+
+    Object.entries(params).map(param => {
+        let [key, value] = param;
+        query.push(`${key}=${encodeURIComponent(value)}`);
+    });
+
+    return query.join("&");
+};

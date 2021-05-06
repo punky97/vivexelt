@@ -49,23 +49,23 @@
             <div class="row">
               <div
                 class="col-md-6 article"
-                v-for="(item, index) in listArticles"
+                v-for="(item, index) in videos"
                 :key="index"
               >
                 <div class="title s-pb24">
                   {{ item.title }}
                 </div>
-                <div class="body">
-                  <img :src="item.image_url" :alt="item.title" />
+                <a class="body" :href="item.link_video" target="_blank">
+                  <img :src="getImgUrl(item.filename)" :alt="item.title" />
                   <div class="short-des">
                     {{ item.short_description }}
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-10 paging s-mt32">
-            <n-pagination type="primary" :page-count="10" v-model="page">
+            <n-pagination type="primary" :page-count="totalPage" v-model="page">
             </n-pagination>
           </div>
         </div>
@@ -77,8 +77,9 @@
 <script>
 import { Carousel, CarouselItem } from 'element-ui';
 import { Pagination } from '@/components';
-import { axious } from 'axios';
+import axios from 'axios';
 import { mapState } from 'vuex'
+import { buildQueryString } from './constant/const'
 export default {
   name: 'tutorial',
   bodyClass: 'landing-page',
@@ -124,7 +125,11 @@ export default {
         }
       ],
       page: 1,
-      loading: false,
+      loading: true,
+      limit: 50,
+      videos: [],
+      total: 0,
+      totalPage: 1,
     };
   },
   computed: {
@@ -132,11 +137,35 @@ export default {
       searchValue: state => state.seasrchValue
     })
   },
-  mounted() {
-
+  async mounted() {
+    await this.fetchVideo()
   },
   methods: {
-
+    async fetchVideo() {
+      this.loading = true
+      const params = {
+        page: this.page || 1,
+        limit: this.limit || 50,
+        search: this.searchValue || ''
+      }
+      axios.get(`${process.env.VUE_APP_BASE_API_ENDPOINT}/public/get-videos${buildQueryString(params)}`)
+        .then((response) => {
+          console.log(response)
+          if (response && response.data && response.data.success && response.data.posts) {
+            this.videos = response.data.posts
+            if (response.data.total) {
+              this.total = response.data.total
+              this.totalPage = Math.ceil(this.total / this.limit)
+            }
+          }
+        }, (error) => {
+          console.log(error);
+        });
+      this.loading = false
+    },
+    getImgUrl(name) {
+      return `${process.env.VUE_APP_BASE_API_ENDPOINT}/public/image/${name}`
+    }
   },
   watch: {
     searchValue: {

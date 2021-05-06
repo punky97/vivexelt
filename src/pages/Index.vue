@@ -31,23 +31,13 @@
         <div class="row justify-content-center">
           <div class="col-md-4 home-carousel s-pb24">
             <el-carousel height="500px">
-              <el-carousel-item>
-                <img class="d-block" src="img/bg1.jpg" alt="First slide" />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Nature, United States</h5>
-                </div>
-              </el-carousel-item>
-              <el-carousel-item>
-                <img class="d-block" src="img/bg3.jpg" alt="Second slide" />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Somewhere Beyond, United States</h5>
-                </div>
-              </el-carousel-item>
-              <el-carousel-item>
-                <img class="d-block" src="img/bg4.jpg" alt="Third slide" />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Yellowstone National Park, United States</h5>
-                </div>
+              <el-carousel-item v-for="(img, index) in images" :key="index">
+                <img
+                  class="d-block"
+                  :src="getImgUrl(img.filename)"
+                  alt="vivexelt"
+                />
+                <div class="carousel-caption d-none d-md-block"></div>
               </el-carousel-item>
             </el-carousel>
           </div>
@@ -105,6 +95,7 @@
 </template>
 <script>
 import { Carousel, CarouselItem } from 'element-ui';
+import axios from 'axios'
 export default {
   name: 'landing',
   bodyClass: 'landing-page',
@@ -114,11 +105,6 @@ export default {
   },
   data() {
     return {
-      form: {
-        firstName: '',
-        email: '',
-        message: ''
-      },
       tweets: [
         {
           title: 'ViVEXELT',
@@ -142,7 +128,9 @@ export default {
           retweets: 7,
           likes: 14,
         },
-      ]
+      ],
+      images: [],
+
     };
   },
   computed: {
@@ -150,9 +138,26 @@ export default {
       return require('../assets/images/logo.svg')
     }
   },
+  async mounted() {
+    await this.getAllImages()
+  },
   methods: {
     goToTut() {
       this.$router.push({ name: 'tutorials' })
+    },
+    async getAllImages() {
+      axios.get(`${process.env.VUE_APP_BASE_API_ENDPOINT}/public/get-all-image-gallery`)
+        .then((response) => {
+          console.log(response);
+          if (response && response.data && response.data.success && response.data.gallerys) {
+            this.images = response.data.gallerys
+          }
+        }, (error) => {
+          console.log(error);
+        });
+    },
+    getImgUrl(name) {
+      return `${process.env.VUE_APP_BASE_API_ENDPOINT}/public/image/${name}`
     }
   }
 };
