@@ -37,7 +37,7 @@
       <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('tutorials')">
         Tutorials
       </a>
-      <drop-down
+      <!-- <drop-down
         tag="li"
         title="Examples"
         icon="now-ui-icons design_image"
@@ -55,7 +55,7 @@
         <nav-link to="/component">
           <i class="now-ui-icons users_single-02"></i> Component
         </nav-link>
-      </drop-down>
+      </drop-down> -->
       <li class="nav-item search-modal">
         <a class="nav-link" style="cursor: pointer" @click="showSearch = true">
           <i class="fas fa-search"></i>
@@ -77,7 +77,6 @@
             name="name"
             id="name"
             v-model="searchValue"
-            required
           />
           <label for="name" class="form__label">Search</label>
         </form>
@@ -87,7 +86,7 @@
 </template>
 
 <script>
-import { DropDown, Navbar, NavLink } from '@/components';
+import { Navbar } from '@/components';
 import { Popover } from 'element-ui';
 import { mapActions } from 'vuex'
 export default {
@@ -97,9 +96,7 @@ export default {
     colorOnScroll: Number
   },
   components: {
-    DropDown,
     Navbar,
-    NavLink,
     [Popover.name]: Popover
   },
   data() {
@@ -121,7 +118,7 @@ export default {
 
       }
       this.showSearch = false
-      this.searchValue = ''
+      //this.searchValue = ''
       this.toggle()
     },
     toggle() {

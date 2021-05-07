@@ -80,6 +80,7 @@ import { Pagination } from '@/components';
 import axios from 'axios';
 import { mapState } from 'vuex'
 import { buildQueryString } from './constant/const'
+import debounce from 'lodash/debounce'
 export default {
   name: 'tutorial',
   bodyClass: 'landing-page',
@@ -141,6 +142,16 @@ export default {
     await this.fetchVideo()
   },
   methods: {
+    debounceFetchVideos: debounce(
+      async function () {
+        this.fetchVideo()
+      },
+      500,
+      {
+        leading: true,
+        trailing: true,
+      }
+    ),
     async fetchVideo() {
       this.loading = true
       const params = {
@@ -148,7 +159,7 @@ export default {
         limit: this.limit || 50,
         search: this.searchValue || ''
       }
-      axios.get(`${process.env.VUE_APP_BASE_API_ENDPOINT}/public/get-videos${buildQueryString(params)}`)
+      axios.get(`${process.env.VUE_APP_BASE_API_ENDPOINT}/public/get-videos?${buildQueryString(params)}`)
         .then((response) => {
           console.log(response)
           if (response && response.data && response.data.success && response.data.posts) {
@@ -169,7 +180,8 @@ export default {
   },
   watch: {
     searchValue: {
-      handler: function (search) {
+      handler: function () {
+        this.debounceFetchVideos()
       },
       deep: true,
     }
