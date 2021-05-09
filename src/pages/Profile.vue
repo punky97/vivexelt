@@ -30,6 +30,17 @@
     </div>
     <div class="">
       <div class="container profile-section">
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <h3 class="title">About {{ user.name }}</h3>
+            <div
+              class="profile-description text-center"
+              v-html="user.description"
+            ></div>
+            <p class="description"></p>
+          </div>
+        </div>
+
         <!-- <div class="button-container">
           <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
           <a
@@ -49,9 +60,6 @@
             <i class="fab fa-instagram"></i>
           </a>
         </div> -->
-        <h3 class="title">About {{ user.name }}</h3>
-        <div class="profile-description" v-html="user.description"></div>
-        <p class="description text-left"></p>
       </div>
     </div>
   </div>

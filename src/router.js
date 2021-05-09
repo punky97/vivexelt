@@ -21,7 +21,7 @@ export default new Router({
       name: 'index',
       components: { default: Index, header: MainNavbar, footer: MainFooter },
       props: {
-        header: { colorOnScroll: 400 },
+        header: { colorOnScroll: 0 },
         footer: { backgroundColor: 'black' }
       }
     },
@@ -30,7 +30,7 @@ export default new Router({
       name: 'aboutus',
       components: { default: AboutUs, header: MainNavbar, footer: MainFooter },
       props: {
-        header: { colorOnScroll: 400 },
+        header: { colorOnScroll: 0 },
         footer: { backgroundColor: 'black' }
       }
     },
@@ -48,7 +48,7 @@ export default new Router({
       name: 'profile',
       components: { default: Profile, header: MainNavbar, footer: MainFooter },
       props: {
-        header: { colorOnScroll: 400 },
+        header: { colorOnScroll: 0 },
         footer: { backgroundColor: 'black' }
       }
     },

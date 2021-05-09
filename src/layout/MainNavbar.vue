@@ -10,7 +10,7 @@
   >
     <template>
       <router-link class="navbar-brand" to="/">
-        <img style="width: 100px" src="img/real-logo.png" alt="Third slide" />
+        <img style="width: 100px" src="img/real-logo.png" alt="ViVEXELT" />
       </router-link>
       <!-- <el-popover
         ref="popover1"

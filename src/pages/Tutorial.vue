@@ -181,9 +181,16 @@ export default {
   watch: {
     searchValue: {
       handler: function () {
+        this.loading = true
         this.debounceFetchVideos()
       },
       deep: true,
+    },
+    page: {
+      handler: function () {
+        this.loading = true
+        this.debounceFetchVideos()
+      },
     }
   }
 };
