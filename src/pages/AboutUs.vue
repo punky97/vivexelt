@@ -3,7 +3,7 @@
     <div class="page-header page-header-small">
       <parallax
         class="page-header-image"
-        style="background-image: url('img/bg6.jpg')"
+        style="background-image: url('img/about-us-cover.jpg')"
       >
       </parallax>
       <div class="content-center">
@@ -217,50 +217,52 @@
   </div>
 </template>
 <script>
-import { Button, FormGroupInput } from '@/components';
-import { Profile } from './constant/const'
+import { Button, FormGroupInput } from "@/components";
+import { Profile } from "./constant/const";
 export default {
-  name: 'about-us',
-  bodyClass: 'landing-page',
+  name: "about-us",
+  bodyClass: "landing-page",
   components: {
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
+    [FormGroupInput.name]: FormGroupInput,
   },
   data() {
     return {
       form: {
-        firstName: '',
-        email: '',
-        message: ''
+        firstName: "",
+        email: "",
+        message: "",
       },
-      profile: {}
+      profile: {},
     };
   },
   mounted() {
-    document.addEventListener('scroll', this.handleScroll);
-    this.profile = Profile
-    console.log()
+    document.addEventListener("scroll", this.handleScroll);
+    this.profile = Profile;
+    console.log();
   },
-  destroyed: function () {
-    document.removeEventListener('scroll', this.handleScroll);
-
+  destroyed: function() {
+    document.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
-    handleScroll: function (e) {
-      let height = 400
-      let div = document.getElementsByClassName('fixed-scroll')[0]
+    handleScroll: function(e) {
+      let height = 400;
+      let div = document.getElementsByClassName("fixed-scroll")[0];
       if (window.scrollY > height) {
-        var top = window.scrollY - height
+        var top = window.scrollY - height;
         top = top < 0 ? 0 : top;
-        var maximum = this.getOffset(document.getElementById('when-will-the-courses-take-place')).top - 300;
+        var maximum =
+          this.getOffset(
+            document.getElementById("when-will-the-courses-take-place")
+          ).top - 300;
         maximum = maximum < 0 ? 0 : maximum;
         top = top > maximum ? maximum : top;
-        div.style.top = `${top}px`
+        div.style.top = `${top}px`;
       } else {
-        div.style.top = `0px`
+        div.style.top = `0px`;
       }
     },
-    getOffset: function (el) {
+    getOffset: function(el) {
       var _x = 0;
       var _y = 0;
       while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
@@ -270,9 +272,7 @@ export default {
       }
       return { top: _y, left: _x };
     },
-
-  }
-
+  },
 };
 </script>
 <style></style>
