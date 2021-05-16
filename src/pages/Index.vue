@@ -50,13 +50,10 @@
                 alt="Third slide"
               />
             </h3>
-
             <div
               class="text-center tweeter"
-              v-for="(item, index) in tweets"
-              :key="index"
             >
-              <div class="tweeter-head">
+              <!-- <div class="tweeter-head">
                 {{ item.title }}
                 <span class="tag">{{ item.tag }}</span>
                 <img
@@ -82,7 +79,8 @@
                 <div class="s-pr36">
                   <span class="icon20" style="color: #858585">Twitter</span>
                 </div>
-              </div>
+              </div> -->
+              <a class="twitter-timeline" data-height="500" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
             </div>
             <n-button class="text-bold w100" type="primary" round
               >Load more
@@ -139,8 +137,13 @@ export default {
     }
   },
   async mounted() {
+    
+    let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://platform.twitter.com/widgets.js')
+      document.head.appendChild(recaptchaScript)
     await this.getAllImages()
   },
+
   methods: {
     goToTut() {
       this.$router.push({ name: 'tutorials' })
