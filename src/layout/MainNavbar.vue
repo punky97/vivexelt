@@ -10,7 +10,7 @@
   >
     <template>
       <router-link class="navbar-brand" to="/">
-        <img style="width: 100px" src="img/real-logo.png" alt="ViVEXELT" />
+        <img style="width: 200px" src="img/real-logo.png" alt="ViVEXELT" />
       </router-link>
       <!-- <el-popover
         ref="popover1"
@@ -35,7 +35,7 @@
         About Us
       </a>
       <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('tutorials')">
-        Tutorials
+        Activities
       </a>
       <!-- <drop-down
         tag="li"

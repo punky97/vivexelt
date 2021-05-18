@@ -10,8 +10,14 @@
         <div class="photo-container">
           <img :src="user.image" alt="" />
         </div>
-        <h3 class="title">{{ user.name }}</h3>
-        <p class="category">{{ user.role }}</p>
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <h3 class="title">{{ user.full_name }}</h3>
+            <p class="category">{{ user.company }}</p>
+            <p class="category">{{ user.role }}</p>
+          </div>
+        </div>
+
         <!-- <div class="content">
           <div class="social-description">
             <h2>26</h2>
@@ -65,13 +71,11 @@
   </div>
 </template>
 <script>
-import { Profile } from './constant/const'
+import { Profile } from "./constant/const"
 export default {
-  name: 'profile',
-  bodyClass: 'profile-page',
-  components: {
-
-  },
+  name: "profile",
+  bodyClass: "profile-page",
+  components: {},
   data() {
     return {
       user: {},
@@ -80,7 +84,7 @@ export default {
   mounted() {
     const userName = this.$route.params.user_name
     this.user = Profile[userName]
-  }
-};
+  },
+}
 </script>
 <style></style>

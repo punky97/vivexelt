@@ -21,7 +21,7 @@
             style="font-size: 1rem"
             @click="goToTut()"
           >
-            Get Started
+            Join the VIVEXELT Network
           </n-button>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <div class="section section-about-us">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-4 home-carousel s-pb24">
+          <!-- <div class="col-md-4 home-carousel s-pb24">
             <el-carousel height="500px">
               <el-carousel-item v-for="(img, index) in images" :key="index">
                 <img
@@ -40,18 +40,18 @@
                 <div class="carousel-caption d-none d-md-block"></div>
               </el-carousel-item>
             </el-carousel>
-          </div>
-          <div class="col-md-6">
+          </div> -->
+          <div class="col-md-8">
             <!-- First image on the right side, above the article -->
-            <h3>
+            <!-- <h3>
               <img
                 style="width: 150px"
                 src="img/real-logo.png"
                 alt="Third slide"
               />
-            </h3>
+            </h3> -->
             <div
-              class="text-center tweeter"
+              class="text-center tweeter timeline-twitter"
             >
               <!-- <div class="tweeter-head">
                 {{ item.title }}
@@ -80,11 +80,11 @@
                   <span class="icon20" style="color: #858585">Twitter</span>
                 </div>
               </div> -->
-              <a class="twitter-timeline" data-height="500" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
+              <a class="twitter-timeline" style="width: 100%;" data-height="550" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
             </div>
-            <n-button class="text-bold w100" type="primary" round
+            <!-- <n-button class="text-bold w100" type="primary" round
               >Load more
-            </n-button>
+            </n-button> -->
           </div>
         </div>
       </div>

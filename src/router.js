@@ -35,7 +35,7 @@ export default new Router({
       }
     },
     {
-      path: '/tutorials',
+      path: '/activities',
       name: 'tutorials',
       components: { default: Tutorial, header: MainNavbar, footer: MainFooter },
       props: {

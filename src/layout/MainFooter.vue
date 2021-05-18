@@ -22,8 +22,9 @@
           </li>
         </ul>
       </nav>
-      <div class="copyright">
-        Vietnam Virtual EXchange for English Language Teaching.
+      <div class="copyright email-footer">
+        <i class="fas fa-envelope icon20 s-mr8"></i>
+        Contact us: someone@gmail.com
       </div>
     </div>
   </footer>
