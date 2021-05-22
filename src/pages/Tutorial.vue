@@ -5,27 +5,71 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-10">
-            <h2 class="search-title">Benefit of taking part</h2>
+            <h2 class="search-title">{{ $t("activities.benefit") }}</h2>
             <div class="row">
               <div class="col-md-7">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Ullamcorper commodo semper sit nunc. Gravida enim in eu
-                  adipiscing tempus dignissim dictumst urna. Turpis mattis
-                  parturient non commodo. Lorem id elit, bibendum aliquam nec.
-                  Massa suspendisse eu id dui ultrices lectus ultricies eu.
-                  Egestas scelerisque sed vel scelerisque vitae. Curabitur a id
-                  ac, dolor, enim dictum aliquet placerat. Pellentesque et arcu
-                  neque viverra interdum. Sed pellentesque diam aliquam, massa.
+                  {{ $t("activities.benefit-des") }}
                 </p>
                 <p>
-                  <a href="# text-bold"><b>Click here</b></a> to express your interest of joining a course
+                  <a
+                    href="#"
+                    class="text-bold"
+                    style="font-size: 1.5rem; text-decoration: none"
+                    ><b>{{ $t("activities.click_here") }}</b></a
+                  >
+                  {{ $t("activities.express") }}
                 </p>
               </div>
               <div class="col-md-5">
-                <div class="row youtube-section">
+                <div class="social-section">
+                  <div class="social-links">
+                    <a
+                      href="https://www.facebook.com/"
+                      title="Facebook"
+                      target="_blank"
+                    >
+                      <img src="img/logo_fb.png" alt="Facebook" />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/"
+                      title="Twitter"
+                      target="_blank"
+                    >
+                      <img src="img/logo_twitter.jpg" alt="Twitter" />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/"
+                      title="Youtube"
+                      target="_blank"
+                    >
+                      <img src="img/logo_youtube.png" alt="Youtube" />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/"
+                      title="Instagram"
+                      target="_blank"
+                    >
+                      <img src="img/logo_insta.png" alt="Instagram" />
+                    </a>
+                  </div>
+                  <div class="join-courses">
+                    <n-button
+                      class="text-bold"
+                      type="primary"
+                      round
+                      simple
+                      style="font-size: 1rem"
+                    >
+                      {{ $t("activities.join_button") }}
+                    </n-button>
+                  </div>
+                </div>
+                <!-- <div class="row youtube-section">
                   <div class="col-8 name">
-                    <span class="title">Youtube Channel name</span>
+                    <span class="title"
+                      >Youtube Channel name {{ $t("tutorial") }}</span
+                    >
                     <a href=""> <i class="fab fa-youtube"></i> Subscribe</a>
                   </div>
                   <div class="col-4 image">
@@ -35,17 +79,16 @@
                       alt="zoe Gazeley-Eke"
                     />
                   </div>
-                </div>
+                </div> -->
               </div>
-
             </div>
           </div>
-          <div
-            class="col-md-10 s-mt36 search-title"
-          >
-            <span v-if="searchValue && searchValue.length">Search results for '{{ searchValue }}':</span>
-            <span v-else>Courses</span>
-          </div> 
+          <div class="col-md-10 s-mt36 search-title">
+            <span v-if="searchValue && searchValue.length"
+              >Search results for '{{ searchValue }}':</span
+            >
+            <span v-else> {{ $t("activities.course") }}</span>
+          </div>
           <div class="col-md-10" v-if="loading">
             <content-loading type="blog"></content-loading>
           </div>
@@ -59,7 +102,7 @@
                 <div class="title s-pb24">
                   {{ item.title }}
                 </div>
-                <div class="body" >
+                <div class="body">
                   <a :href="item.link_video" target="_blank">
                     <img :src="getImgUrl(item.filename)" :alt="item.title" />
                     <div class="short-des">
@@ -142,6 +185,7 @@ export default {
   computed: {
     ...mapState("search", {
       searchValue: (state) => state.seasrchValue,
+      currentLang: (state) => state.language,
     }),
   },
   async mounted() {
@@ -149,7 +193,7 @@ export default {
   },
   methods: {
     debounceFetchVideos: debounce(
-      async function() {
+      async function () {
         this.fetchVideo()
       },
       500,
@@ -167,8 +211,7 @@ export default {
       }
       axios
         .get(
-          `${
-            process.env.VUE_APP_BASE_API_ENDPOINT
+          `${process.env.VUE_APP_BASE_API_ENDPOINT
           }/public/get-videos?${buildQueryString(params)}`
         )
         .then(
@@ -199,14 +242,14 @@ export default {
   },
   watch: {
     searchValue: {
-      handler: function() {
+      handler: function () {
         this.loading = true
         this.debounceFetchVideos()
       },
       deep: true,
     },
     page: {
-      handler: function() {
+      handler: function () {
         this.loading = true
         this.debounceFetchVideos()
       },

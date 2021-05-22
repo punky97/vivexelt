@@ -10,6 +10,8 @@ import Component from './pages/Component.vue';
 import AboutUs from './pages/AboutUs.vue';
 import Tutorial from './pages/Tutorial.vue';
 import Profile from './pages/Profile.vue';
+import Contact from './pages/Contact.vue';
+import Research from './pages/Research.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -47,6 +49,24 @@ export default new Router({
       path: '/profile/:user_name',
       name: 'profile',
       components: { default: Profile, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 0 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      components: { default: Contact, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 0 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/research-published',
+      name: 'research',
+      components: { default: Research, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 0 },
         footer: { backgroundColor: 'black' }

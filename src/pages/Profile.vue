@@ -12,9 +12,9 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-10">
-            <h3 class="title">{{ user.full_name }}</h3>
-            <p class="category">{{ user.company }}</p>
-            <p class="category">{{ user.role }}</p>
+            <h3 class="title">{{ $t(`people.${user.full_name}`) }}</h3>
+            <p class="category">{{ $t(`people.${user.company}`) }}</p>
+            <p class="category">{{ $t(`people.${user.role}`) }}</p>
           </div>
         </div>
 
@@ -38,10 +38,10 @@
       <div class="container profile-section">
         <div class="row justify-content-center">
           <div class="col-md-10">
-            <h3 class="title">About {{ user.name }}</h3>
+            <h3 class="title">About {{ $t(`people.${user.name}`) }}</h3>
             <div
               class="profile-description text-center"
-              v-html="user.description"
+              v-html="$t(`people.${user.description}`)"
             ></div>
             <p class="description"></p>
           </div>

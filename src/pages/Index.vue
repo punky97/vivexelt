@@ -10,9 +10,7 @@
         <div class="container text-left">
           <h1 class="title">ViVEXELT</h1>
           <h2 class="sub-title">
-            Vietnam Virtual EXchange for English Language Teaching A British
-            Council funded Digital Learning Innovation Pilot With the support of
-            the Vietnam’s National Foreign Languages Project (NFLP)
+            {{ $t("index.home_description") }}
           </h2>
           <n-button
             class="text-bold"
@@ -21,7 +19,7 @@
             style="font-size: 1rem"
             @click="goToTut()"
           >
-            Join the VIVEXELT Network
+            {{ $t("index.join_button") }}
           </n-button>
         </div>
       </div>
@@ -29,19 +27,19 @@
     <div class="section section-about-us">
       <div class="container">
         <div class="row justify-content-center">
-          <!-- <div class="col-md-4 home-carousel s-pb24">
-            <el-carousel height="500px">
+          <div class="col-md-6 home-carousel s-pb24">
+            <el-carousel height="600px" class="">
               <el-carousel-item v-for="(img, index) in images" :key="index">
                 <img
-                  class="d-block"
+                  class="d-block carousel-item"
                   :src="getImgUrl(img.filename)"
                   alt="vivexelt"
                 />
                 <div class="carousel-caption d-none d-md-block"></div>
               </el-carousel-item>
             </el-carousel>
-          </div> -->
-          <div class="col-md-8">
+          </div>
+          <div class="col-md-6">
             <!-- First image on the right side, above the article -->
             <!-- <h3>
               <img
@@ -50,9 +48,7 @@
                 alt="Third slide"
               />
             </h3> -->
-            <div
-              class="text-center tweeter timeline-twitter"
-            >
+            <div class="text-center tweeter timeline-twitter">
               <!-- <div class="tweeter-head">
                 {{ item.title }}
                 <span class="tag">{{ item.tag }}</span>
@@ -80,7 +76,13 @@
                   <span class="icon20" style="color: #858585">Twitter</span>
                 </div>
               </div> -->
-              <a class="twitter-timeline" style="width: 100%;" data-height="550" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
+              <a
+                class="twitter-timeline"
+                style="width: 100%"
+                data-height="550"
+                href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
+                >Tweets by TwitterDev</a
+              >
             </div>
             <!-- <n-button class="text-bold w100" type="primary" round
               >Load more
@@ -137,10 +139,10 @@ export default {
     }
   },
   async mounted() {
-    
+
     let recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('src', 'https://platform.twitter.com/widgets.js')
-      document.head.appendChild(recaptchaScript)
+    recaptchaScript.setAttribute('src', 'https://platform.twitter.com/widgets.js')
+    document.head.appendChild(recaptchaScript)
     await this.getAllImages()
   },
 

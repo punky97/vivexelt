@@ -12,17 +12,6 @@
       <router-link class="navbar-brand" to="/">
         <img style="width: 200px" src="img/real-logo.png" alt="ViVEXELT" />
       </router-link>
-      <!-- <el-popover
-        ref="popover1"
-        popper-class="popover"
-        placement="bottom"
-        width="200"
-        trigger="hover"
-      >
-        <div class="popover-body">
-          Designed by Invision. Coded by Creative Tim
-        </div>
-      </el-popover> -->
     </template>
     <template slot="navbar-menu">
       <li class="nav-item search-tut">
@@ -31,36 +20,64 @@
           </fg-input>
         </form>
       </li>
+      <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('index')">
+        {{ $t("nav.home") }}
+      </a>
       <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('aboutus')">
-        About Us
+        {{ $t("nav.about_us") }}
       </a>
       <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('tutorials')">
-        Activities
+        {{ $t("nav.activities") }}
       </a>
-      <!-- <drop-down
-        tag="li"
-        title="Examples"
-        icon="now-ui-icons design_image"
-        class="nav-item"
-      >
-        <nav-link to="/landing" @click="toggle()">
-          <i class="now-ui-icons education_paper"></i> Landing
-        </nav-link>
-        <nav-link to="/login">
-          <i class="now-ui-icons users_circle-08"></i> Login
-        </nav-link>
-        <nav-link to="/demo-profile">
-          <i class="now-ui-icons users_single-02"></i> Profile
-        </nav-link>
-        <nav-link to="/component">
-          <i class="now-ui-icons users_single-02"></i> Component
-        </nav-link>
-      </drop-down> -->
-      <li class="nav-item search-modal">
+      <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('research')">
+        {{ $t("nav.research_published") }}
+      </a>
+      <a class="navbar-brand s-pr12 s-pl12" to="" @click="goTo('contact')">
+        {{ $t("nav.contact") }}
+      </a>
+      <drop-down tag="li" icon="now-ui-icons design_app" class="nav-item">
+        <template v-slot:title>
+          <a class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <img
+              style="width: 35px"
+              v-if="currentLang === 'en'"
+              class="s-mr12"
+              src="img/flag_en.png"
+              alt="English"
+            />
+            <img
+              style="width: 35px"
+              v-if="currentLang === 'vn'"
+              class="s-mr12"
+              src="img/flag_vn.png"
+              alt="Vietnamese"
+            />
+          </a>
+        </template>
+        <language-item
+          name="English"
+          code="en"
+          img="img/flag_en.png"
+          @langChange="onLangChange"
+        />
+        <language-item
+          name="Vietnamese"
+          img="img/flag_vn.png"
+          code="vn"
+          @langChange="onLangChange"
+        />
+      </drop-down>
+      <!-- <li class="nav-item search-modal">
         <a class="nav-link" style="cursor: pointer" @click="showSearch = true">
           <i class="fas fa-search"></i>
         </a>
-      </li>
+      </li> -->
+      <!-- <li class="nav-item search-modal">
+        <n-switch v-model="language">
+          <template v-slot:on style="height: 100px">VIETNAME</template>
+          <template v-slot:off>ENGLISHT</template>
+        </n-switch>
+      </li> -->
     </template>
     <modal
       :show.sync="showSearch"
@@ -86,9 +103,10 @@
 </template>
 
 <script>
-import { Navbar } from '@/components';
+import { Navbar, DropDown } from '@/components';
 import { Popover } from 'element-ui';
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
+import LanguageItem from '../pages/components/LanguageItem.vue';
 export default {
   name: 'main-navbar',
   props: {
@@ -97,7 +115,9 @@ export default {
   },
   components: {
     Navbar,
-    [Popover.name]: Popover
+    [Popover.name]: Popover,
+    DropDown,
+    LanguageItem
   },
   data() {
     return {
@@ -105,9 +125,15 @@ export default {
       searchValue: '',
     }
   },
+  computed: {
+    ...mapState("search", {
+      currentLang: (state) => state.language,
+    })
+  },
   methods: {
     ...mapActions('search', {
       searchTut: 'searchTut',
+      setLang: 'setLang'
     }),
     onSubmit: function () {
       this.searchTut(this.searchValue)
@@ -129,6 +155,9 @@ export default {
       if (this.$route.name !== route) {
         this.$router.push({ name: route })
       }
+    },
+    onLangChange(lg) {
+      this.setLang(lg)
     }
   }
 };

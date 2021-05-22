@@ -28,7 +28,7 @@ import { dom } from '@fortawesome/fontawesome-svg-core'
 import VueScrollactive from 'vue-scrollactive';
 import Vuex from "vuex";
 import store from "./store";
-
+import i18n from './language'
 
 Vue.use(Vuex);
 
@@ -43,8 +43,11 @@ Vue.config.productionTip = false;
 Vue.use(NowUiKit);
 Vue.use(VueScrollactive);
 
+
+
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app');
